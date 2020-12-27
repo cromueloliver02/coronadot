@@ -2,8 +2,9 @@ import React, { Fragment } from 'react';
 import './App.css';
 
 import Header from './components/layout/Header';
-import CountrySelectForm from './components/form/CountrySelectForm';
-import Results from './components/results/Results';
+import CountryInfo from './components/layout/CountryInfo';
+import Results from './components/results/ResultCards';
+import Chart from './components/layout/Charts';
 // redux
 import store from './store';
 import { Provider } from 'react-redux';
@@ -13,8 +14,9 @@ const App = () => {
 		<Provider store={store}>
 			<Fragment>
 				<Header />
-				<CountrySelectForm />
+				<CountryInfo />
 				<Results />
+				<Chart />
 			</Fragment>
 		</Provider>
 	);

@@ -16,13 +16,13 @@ const ActiveCard = ({ active, critical, tests }) => {
 							delay={0.75}
 						/>
 					) : (
-						0
+						<CountUp end={0} duration={3} separator=',' delay={0.75} />
 					)}
 				</p>
 				<p className='today-cases'>
 					{critical ? (
 						<CountUp
-							end={active}
+							end={critical}
 							prefix='Critical: '
 							duration={3}
 							separator=','

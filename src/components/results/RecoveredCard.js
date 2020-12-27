@@ -9,12 +9,16 @@ const RecoveredCard = ({ recovered, todayRecovered }) => {
 			<div className='custom-card card-recovered'>
 				<h6 className='result-title mb-0'>Recovered</h6>
 				<p className='result-num mb-2'>
-					<CountUp
-						end={recovered}
-						duration={3}
-						separator=','
-						delay={0.75}
-					/>
+					{recovered ? (
+						<CountUp
+							end={recovered}
+							duration={3}
+							separator=','
+							delay={0.75}
+						/>
+					) : (
+						<CountUp end={0} duration={3} separator=',' delay={0.75} />
+					)}
 				</p>
 				<p className='today-cases'>
 					{todayRecovered ? (
@@ -42,7 +46,7 @@ const RecoveredCard = ({ recovered, todayRecovered }) => {
 };
 
 RecoveredCard.propTypes = {
-	recovered: PropTypes.number.isRequired,
+	recovered: PropTypes.number,
 	todayRecovered: PropTypes.number
 };
 

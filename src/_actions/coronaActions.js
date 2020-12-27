@@ -20,7 +20,7 @@ export const getAllCountryNames = () => async dispatch => {
 			payload: countryArr
 		});
 	} catch (err) {
-		console.err(err.message);
+		console.error(err.message);
 		dispatch({
 			type: FETCH_ERROR,
 			payload: err.message
@@ -28,7 +28,7 @@ export const getAllCountryNames = () => async dispatch => {
 	}
 };
 
-export const getGlobal = () => async dispatch => {
+export const getGlobalResult = () => async dispatch => {
 	try {
 		const res = await axios.get(
 			'https://disease.sh/v3/covid-19/all?yesterday=true&twoDaysAgo=false&allowNull=true'
@@ -39,7 +39,7 @@ export const getGlobal = () => async dispatch => {
 			payload: res.data
 		});
 	} catch (err) {
-		console.err(err.message);
+		console.error(err.message);
 		dispatch({
 			type: FETCH_ERROR,
 			payload: err.message
@@ -62,7 +62,7 @@ export const getCountryResult = country => async dispatch => {
 			payload: res.data
 		});
 	} catch (err) {
-		console.err(err.message);
+		console.error(err.message);
 		dispatch({
 			type: FETCH_ERROR,
 			payload: err.message

@@ -9,7 +9,16 @@ const DeathsCard = ({ deaths, todayDeaths }) => {
 			<div className='custom-card card-deaths'>
 				<h6 className='result-title mb-0'>Deaths</h6>
 				<p className='result-num mb-2'>
-					<CountUp end={deaths} duration={3} separator=',' delay={0.75} />
+					{deaths ? (
+						<CountUp
+							end={deaths}
+							duration={3}
+							separator=','
+							delay={0.75}
+						/>
+					) : (
+						<CountUp end={0} duration={3} separator=',' delay={0.75} />
+					)}
 				</p>
 				<p className='today-cases'>
 					{todayDeaths ? (

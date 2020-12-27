@@ -9,7 +9,16 @@ const InfectedCard = ({ cases, todayCases }) => {
 			<div className='custom-card card-infected'>
 				<h6 className='result-title mb-0'>Infected</h6>
 				<p className='result-num mb-2'>
-					<CountUp end={cases} duration={3} separator=',' delay={0.75} />
+					{cases ? (
+						<CountUp
+							end={cases}
+							duration={3}
+							separator=','
+							delay={0.75}
+						/>
+					) : (
+						<CountUp end={0} duration={3} separator=',' delay={0.75} />
+					)}
 				</p>
 				<p className='today-cases'>
 					{todayCases ? (
@@ -37,7 +46,7 @@ const InfectedCard = ({ cases, todayCases }) => {
 };
 
 InfectedCard.propTypes = {
-	cases: PropTypes.number.isRequired,
+	cases: PropTypes.number,
 	todayCases: PropTypes.number
 };
 
