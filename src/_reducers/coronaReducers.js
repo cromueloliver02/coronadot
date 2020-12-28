@@ -37,6 +37,7 @@ export default (state = initialState, { type, payload }) => {
 		case SET_LOADING:
 			return {
 				...state,
+				country: null,
 				loading: true
 			};
 		default:
