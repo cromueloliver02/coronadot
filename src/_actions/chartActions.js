@@ -156,7 +156,6 @@ export const getCountryHistory = country => async dispatch => {
 			return dispatch(getCountryHistoryBar(country));
 		}
 
-		// console.error(err.response.data.message);
 		dispatch({
 			type: CHART_ERROR,
 			payload: err.response.data.message
