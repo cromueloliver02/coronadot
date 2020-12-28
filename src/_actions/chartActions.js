@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
 	GET_GLOBAL_HISTORY,
 	GET_COUNTRY_HISTORY,
+	SET_BAR_CHART,
 	SET_CHART_LOADING,
 	CHART_ERROR
 } from '../_actions/types';
@@ -11,7 +12,7 @@ export const getGlobalHistory = () => async dispatch => {
 
 	try {
 		const res = await axios.get(
-			'https://disease.sh/v3/covid-19/historical/all?lastdays=60'
+			'https://disease.sh/v3/covid-19/historical/all?lastdays=30'
 		);
 
 		const labels = Object.keys(res.data.cases);
@@ -87,7 +88,7 @@ export const getCountryHistory = country => async dispatch => {
 
 	try {
 		const res = await axios.get(
-			`https://disease.sh/v3/covid-19/historical/${country}?lastdays=60`
+			`https://disease.sh/v3/covid-19/historical/${country}?lastdays=30`
 		);
 
 		const labels = Object.keys(res.data.timeline.cases);
@@ -101,7 +102,7 @@ export const getCountryHistory = country => async dispatch => {
 				{
 					label: 'Infected',
 					data: infectedNum,
-					borderColor: ['rgba(199, 0, 57, 0.5)'],
+					borderColor: ['rgb(199, 0, 57,)'],
 					borderWidth: 2,
 					pointBorderWidth: 0,
 					pointRadius: 2,
@@ -117,7 +118,7 @@ export const getCountryHistory = country => async dispatch => {
 				{
 					label: 'Recovered',
 					data: recoveredNum,
-					borderColor: ['rgba(40, 223, 153, 0.5)'],
+					borderColor: ['rgb(40, 223, 153)'],
 					borderWidth: 2,
 					pointBorderWidth: 0,
 					pointRadius: 2,
@@ -133,7 +134,7 @@ export const getCountryHistory = country => async dispatch => {
 				{
 					label: 'Deaths',
 					data: deathsNum,
-					borderColor: ['rgba(27, 38, 44, 0.5)'],
+					borderColor: ['rgb(27, 38, 44)'],
 					borderWidth: 2,
 					pointBorderWidth: 0,
 					pointRadius: 2,
@@ -148,9 +149,12 @@ export const getCountryHistory = country => async dispatch => {
 			payload: { infected, recovered, deaths }
 		});
 	} catch (err) {
-		// if (err.response.data.message) {
-		// 	return console.log('hehehuhu');
-		// }
+		if (
+			err.response.data.message ===
+			"Country not found or doesn't have any historical data"
+		) {
+			return dispatch(getCountryHistoryBar(country));
+		}
 
 		// console.error(err.response.data.message);
 		dispatch({
@@ -160,10 +164,40 @@ export const getCountryHistory = country => async dispatch => {
 	}
 };
 
-// const getCountryHistoryBar = country => async dispatch => {
-//    try {
-//       const
-//    } catch (err) {
+const getCountryHistoryBar = country => async dispatch => {
+	try {
+		const res = await axios.get(
+			`https://disease.sh/v3/covid-19/countries/${country}?yesterday=true&twoDaysAgo=false&strict=true&allowNull=true`
+		);
 
-//    }
-// }
+		const barChart = {
+			labels: ['Infected', 'Recovered', 'Deaths'],
+			datasets: [
+				{
+					backgroundColor: [
+						'rgba(199, 0, 57, 0.05)',
+						'rgba(40, 223, 153, 0.05)',
+						'rgba(27, 38, 44, 0.05)'
+					],
+					borderColor: [
+						'rgb(199, 0, 57)',
+						'rgb(40, 223, 153)',
+						'rgb(27, 38, 44)'
+					],
+					borderWidth: 2,
+					data: [res.data.cases, res.data.recovered, res.data.deaths]
+				}
+			]
+		};
+
+		dispatch({
+			type: SET_BAR_CHART,
+			payload: barChart
+		});
+	} catch (err) {
+		dispatch({
+			type: CHART_ERROR,
+			payload: err.response.data.message
+		});
+	}
+};

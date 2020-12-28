@@ -1,6 +1,7 @@
 import {
 	GET_GLOBAL_HISTORY,
 	GET_COUNTRY_HISTORY,
+	SET_BAR_CHART,
 	CHART_ERROR,
 	SET_CHART_LOADING
 } from '../_actions/types';
@@ -9,6 +10,7 @@ const initialState = {
 	infected: null,
 	recovered: null,
 	deaths: null,
+	barChart: null,
 	error: null,
 	loading: false
 };
@@ -24,6 +26,12 @@ export default (state = initialState, { type, payload }) => {
 				deaths: payload.deaths,
 				loading: false
 			};
+		case SET_BAR_CHART:
+			return {
+				...state,
+				barChart: payload,
+				loading: false
+			};
 		case CHART_ERROR:
 			return {
 				...state,
@@ -36,6 +44,7 @@ export default (state = initialState, { type, payload }) => {
 				infected: null,
 				recovered: null,
 				deaths: null,
+				barChart: null,
 				loading: true
 			};
 		default:

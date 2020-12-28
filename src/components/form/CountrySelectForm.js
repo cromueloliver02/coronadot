@@ -20,7 +20,7 @@ const CountrySelectForm = ({
 	getGlobalHistory,
 	getCountryHistory
 }) => {
-	const [country, setCountry] = useState('global');
+	const [country, setCountry] = useState('british virgin islands');
 
 	useEffect(() => {
 		getAllCountryNames();

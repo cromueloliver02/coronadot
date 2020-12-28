@@ -4,7 +4,7 @@ import './App.css';
 import Header from './components/layout/Header';
 import CountryInfo from './components/layout/CountryInfo';
 import Results from './components/results/ResultCards';
-import Chart from './components/layout/Charts';
+import Chart from './components/charts/Charts';
 // redux
 import store from './store';
 import { Provider } from 'react-redux';

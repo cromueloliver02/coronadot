@@ -9,6 +9,7 @@
 	--recovered-color: #28df99;
 	--deaths-color: #1b262c;
 	--active-color: #fdb827;
+	--dummy-color: rgba(199, 0, 57, 0.05);
 }
 
 a {
