@@ -12,20 +12,21 @@ const Chart = ({
 	}
 
 	return (
-		<div className='chart py-5'>
+		<div className='chart py-4'>
 			<div className='container'>
 				{infected !== null &&
 				recovered !== null &&
 				deaths !== null &&
 				barChart === null ? (
 					<Fragment>
-						<h3>Cases for the past 2 months</h3>
 						<div className='row'>
 							<div className='col-md-6 mb-5'>
 								<Line
 									data={infected}
 									height={200}
-									options={{ maintainAspectRatio: true }}
+									options={{
+										maintainAspectRatio: true
+									}}
 								/>
 							</div>
 							<div className='col-md-6 mb-5'>

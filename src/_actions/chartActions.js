@@ -12,7 +12,7 @@ export const getGlobalHistory = () => async dispatch => {
 
 	try {
 		const res = await axios.get(
-			'https://disease.sh/v3/covid-19/historical/all?lastdays=30'
+			'https://disease.sh/v3/covid-19/historical/all?lastdays=60'
 		);
 
 		const labels = Object.keys(res.data.cases);
@@ -25,9 +25,9 @@ export const getGlobalHistory = () => async dispatch => {
 				labels,
 				datasets: [
 					{
-						label: 'Infected',
+						label: 'Infected for the Past Two Months',
 						data: infectedNum,
-						borderColor: ['rgba(199, 0, 57, 0.5)'],
+						borderColor: ['rgba(199, 0, 57, 0.35)'],
 						borderWidth: 2,
 						pointBorderWidth: 0,
 						pointRadius: 2,
@@ -40,7 +40,7 @@ export const getGlobalHistory = () => async dispatch => {
 				labels,
 				datasets: [
 					{
-						label: 'Recovered',
+						label: 'Recovered for the Past Two Months',
 						data: recoveredNum,
 						borderColor: ['rgba(40, 223, 153, 0.5)'],
 						borderWidth: 2,
@@ -55,9 +55,9 @@ export const getGlobalHistory = () => async dispatch => {
 				labels,
 				datasets: [
 					{
-						label: 'Deaths',
+						label: 'Deaths for the Past Two Months',
 						data: deathsNum,
-						borderColor: ['rgba(27, 38, 44, 0.5)'],
+						borderColor: ['rgba(27, 38, 44, 0.35)'],
 						borderWidth: 2,
 						pointBorderWidth: 0,
 						pointRadius: 2,
@@ -88,7 +88,7 @@ export const getCountryHistory = country => async dispatch => {
 
 	try {
 		const res = await axios.get(
-			`https://disease.sh/v3/covid-19/historical/${country}?lastdays=30`
+			`https://disease.sh/v3/covid-19/historical/${country}?lastdays=60`
 		);
 
 		const labels = Object.keys(res.data.timeline.cases);
@@ -102,7 +102,7 @@ export const getCountryHistory = country => async dispatch => {
 				{
 					label: 'Infected',
 					data: infectedNum,
-					borderColor: ['rgb(199, 0, 57,)'],
+					borderColor: ['rgba(199, 0, 57, 0.35)'],
 					borderWidth: 2,
 					pointBorderWidth: 0,
 					pointRadius: 2,
@@ -118,7 +118,7 @@ export const getCountryHistory = country => async dispatch => {
 				{
 					label: 'Recovered',
 					data: recoveredNum,
-					borderColor: ['rgb(40, 223, 153)'],
+					borderColor: ['rgba(40, 223, 153, 0.5)'],
 					borderWidth: 2,
 					pointBorderWidth: 0,
 					pointRadius: 2,
@@ -134,7 +134,7 @@ export const getCountryHistory = country => async dispatch => {
 				{
 					label: 'Deaths',
 					data: deathsNum,
-					borderColor: ['rgb(27, 38, 44)'],
+					borderColor: ['rgba(27, 38, 44, 0.35)'],
 					borderWidth: 2,
 					pointBorderWidth: 0,
 					pointRadius: 2,

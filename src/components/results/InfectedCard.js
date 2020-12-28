@@ -8,7 +8,7 @@ const InfectedCard = ({ cases, todayCases }) => {
 		<div className='col-lg-3 col-sm-6 mb-resp-3'>
 			<div className='custom-card card-infected'>
 				<h6 className='result-title mb-0'>Infected</h6>
-				<p className='result-num mb-2'>
+				<p className='result-num mb-2 infected-text'>
 					{cases ? (
 						<CountUp
 							end={cases}

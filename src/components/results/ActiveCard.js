@@ -7,7 +7,7 @@ const ActiveCard = ({ active, critical, tests }) => {
 		<div className='col-lg-3 col-sm-6 mb-resp-3'>
 			<div className='custom-card card-active'>
 				<h6 className='result-title mb-0'>Active</h6>
-				<p className='result-num mb-2'>
+				<p className='result-num mb-2 active-text'>
 					{active ? (
 						<CountUp
 							end={active}

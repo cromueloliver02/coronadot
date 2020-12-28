@@ -8,7 +8,7 @@ const RecoveredCard = ({ recovered, todayRecovered }) => {
 		<div className='col-lg-3 col-sm-6 mb-resp-3'>
 			<div className='custom-card card-recovered'>
 				<h6 className='result-title mb-0'>Recovered</h6>
-				<p className='result-num mb-2'>
+				<p className='result-num mb-2 recovered-text'>
 					{recovered ? (
 						<CountUp
 							end={recovered}

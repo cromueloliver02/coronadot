@@ -10,35 +10,38 @@ const CountryInfo = ({ corona: { country, loading } }) => {
 	}
 
 	return (
-		<section className='countryInfo py-3'>
-			<div className='container'>
-				<div className='d-flex justify-content-center'>
-					<div className='d-flex align-items-center'>
-						{country.countryInfo !== undefined ? (
-							<Fragment>
-								<span className='country-name mr-3'>
-									{country.country}
-								</span>
-								<img
-									className='country-flag'
-									src={country.countryInfo.flag}
-									alt={country.country}
-								/>
-							</Fragment>
-						) : (
-							<Fragment>
-								<span className='country-name mr-3'>Global</span>
-								<img
-									src={global}
-									alt='Global'
-									style={{ width: '70px' }}
-								/>
-							</Fragment>
-						)}
+		country !== null &&
+		!loading && (
+			<section className='countryInfo py-3	'>
+				<div className='container'>
+					<div className='d-flex justify-content-center'>
+						<div className='d-flex align-items-center'>
+							{country.countryInfo !== undefined ? (
+								<Fragment>
+									<span className='country-name mr-3'>
+										{country.country}
+									</span>
+									<img
+										className='country-flag'
+										src={country.countryInfo.flag}
+										alt={country.country}
+									/>
+								</Fragment>
+							) : (
+								<Fragment>
+									<span className='country-name mr-3'>Global</span>
+									<img
+										src={global}
+										alt='Global'
+										style={{ width: '70px' }}
+									/>
+								</Fragment>
+							)}
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		)
 	);
 };
 

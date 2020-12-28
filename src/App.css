@@ -5,11 +5,14 @@
 	--text-color: #39515e;
 	--dark-color: #0f4c75;
 	--light-color: #bbe1fa;
-	--infected-color: #c70039;
-	--recovered-color: #28df99;
-	--deaths-color: #1b262c;
-	--active-color: #fdb827;
-	--dummy-color: rgba(199, 0, 57, 0.05);
+	/* --infected-color: #c70039; */
+	--infected-color: #af0233;
+	/* --recovered-color: #28df99; */
+	--recovered-color: #20ac76;
+	/* --deaths-color: #1b262c; */
+	--deaths-color: #283942;
+	/* --active-color: #fdb827; */
+	--active-color: #dfa527;
 }
 
 a {
@@ -28,6 +31,18 @@ body {
 /* UTILITY CLASSES */
 .primary-text {
 	color: var(--primary-color);
+}
+.infected-text {
+	color: var(--infected-color);
+}
+.recovered-text {
+	color: var(--recovered-color);
+}
+.deaths-text {
+	color: var(--deaths-color);
+}
+.active-text {
+	color: var(--active-color);
 }
 
 .header {
@@ -86,6 +101,11 @@ body {
 }
 .current-date {
 	color: rgb(107, 107, 107);
+}
+
+.footer {
+	background: #f0f0f0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 992px) {

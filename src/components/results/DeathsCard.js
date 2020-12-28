@@ -8,7 +8,7 @@ const DeathsCard = ({ deaths, todayDeaths }) => {
 		<div className='col-lg-3 col-sm-6 mb-resp-3'>
 			<div className='custom-card card-deaths'>
 				<h6 className='result-title mb-0'>Deaths</h6>
-				<p className='result-num mb-2'>
+				<p className='result-num mb-2 deaths-text'>
 					{deaths ? (
 						<CountUp
 							end={deaths}
