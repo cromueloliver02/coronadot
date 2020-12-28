@@ -93,6 +93,10 @@ body {
 		margin-bottom: 1rem;
 	}
 
+	.logo {
+		text-align: center !important;
+	}
+
 	.header-content {
 		/* display: flex;
 		flex-direction: column;

@@ -20,15 +20,15 @@ const Chart = ({
 				barChart === null ? (
 					<Fragment>
 						<h3>Cases for the past 2 months</h3>
-						<div className='row mb-5'>
-							<div className='col-md-6'>
+						<div className='row'>
+							<div className='col-md-6 mb-5'>
 								<Line
 									data={infected}
 									height={200}
 									options={{ maintainAspectRatio: true }}
 								/>
 							</div>
-							<div className='col-md-6'>
+							<div className='col-md-6 mb-5'>
 								<Line
 									data={recovered}
 									height={200}
@@ -37,7 +37,7 @@ const Chart = ({
 							</div>
 						</div>
 						<div className='row'>
-							<div className='col-md-6 offset-md-3'>
+							<div className='col-md-6 offset-md-3 mb-5'>
 								<Line
 									data={deaths}
 									height={200}
