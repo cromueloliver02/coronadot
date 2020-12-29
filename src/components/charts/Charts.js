@@ -14,6 +14,7 @@ const Chart = ({
 	return (
 		<div className='chart py-4'>
 			<div className='container'>
+				{/* <h4 className='text-center'>Covid History for the Past 2 months</h4> */}
 				{infected !== null &&
 				recovered !== null &&
 				deaths !== null &&
@@ -25,7 +26,15 @@ const Chart = ({
 									data={infected}
 									height={200}
 									options={{
-										maintainAspectRatio: true
+										maintainAspectRatio: true,
+										title: {
+											display: true,
+											text:
+												'Infection History for the Past Three Months'
+										},
+										legend: {
+											display: false
+										}
 									}}
 								/>
 							</div>
@@ -33,7 +42,17 @@ const Chart = ({
 								<Line
 									data={recovered}
 									height={200}
-									options={{ maintainAspectRatio: true }}
+									options={{
+										maintainAspectRatio: true,
+										title: {
+											display: true,
+											text:
+												'Recovery History for the Past Three Months'
+										},
+										legend: {
+											display: false
+										}
+									}}
 								/>
 							</div>
 						</div>
@@ -42,7 +61,17 @@ const Chart = ({
 								<Line
 									data={deaths}
 									height={200}
-									options={{ maintainAspectRatio: true }}
+									options={{
+										maintainAspectRatio: true,
+										title: {
+											display: true,
+											text:
+												'Deaths History for the Past Three Months'
+										},
+										legend: {
+											display: false
+										}
+									}}
 								/>
 							</div>
 						</div>

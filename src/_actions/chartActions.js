@@ -12,7 +12,7 @@ export const getGlobalHistory = () => async dispatch => {
 
 	try {
 		const res = await axios.get(
-			'https://disease.sh/v3/covid-19/historical/all?lastdays=60'
+			'https://disease.sh/v3/covid-19/historical/all?lastdays=90'
 		);
 
 		const labels = Object.keys(res.data.cases);
@@ -20,57 +20,57 @@ export const getGlobalHistory = () => async dispatch => {
 		const recoveredNum = Object.values(res.data.recovered);
 		const deathsNum = Object.values(res.data.deaths);
 
-		const chart = {
-			infected: {
-				labels,
-				datasets: [
-					{
-						label: 'Infected for the Past Two Months',
-						data: infectedNum,
-						borderColor: ['rgba(199, 0, 57, 0.35)'],
-						borderWidth: 2,
-						pointBorderWidth: 0,
-						pointRadius: 2,
-						pointBackgroundColor: 'rgb(199, 0, 57)',
-						fill: false
-					}
-				]
-			},
-			recovered: {
-				labels,
-				datasets: [
-					{
-						label: 'Recovered for the Past Two Months',
-						data: recoveredNum,
-						borderColor: ['rgba(40, 223, 153, 0.5)'],
-						borderWidth: 2,
-						pointBorderWidth: 0,
-						pointRadius: 2,
-						pointBackgroundColor: 'rgb(40, 223, 153)',
-						fill: false
-					}
-				]
-			},
-			deaths: {
-				labels,
-				datasets: [
-					{
-						label: 'Deaths for the Past Two Months',
-						data: deathsNum,
-						borderColor: ['rgba(27, 38, 44, 0.35)'],
-						borderWidth: 2,
-						pointBorderWidth: 0,
-						pointRadius: 2,
-						pointBackgroundColor: 'rgb(27, 38, 44)',
-						fill: false
-					}
-				]
-			}
+		const infected = {
+			labels,
+			datasets: [
+				{
+					label: 'Infected',
+					data: infectedNum,
+					borderColor: ['rgba(199, 0, 57, 0.35)'],
+					borderWidth: 2,
+					pointBorderWidth: 0,
+					pointRadius: 2,
+					pointBackgroundColor: 'rgb(199, 0, 57)',
+					fill: false
+				}
+			]
+		};
+
+		const recovered = {
+			labels,
+			datasets: [
+				{
+					label: 'Recovered',
+					data: recoveredNum,
+					borderColor: ['rgba(40, 223, 153, 0.5)'],
+					borderWidth: 2,
+					pointBorderWidth: 0,
+					pointRadius: 2,
+					pointBackgroundColor: 'rgb(40, 223, 153)',
+					fill: false
+				}
+			]
+		};
+
+		const deaths = {
+			labels,
+			datasets: [
+				{
+					label: 'Deaths',
+					data: deathsNum,
+					borderColor: ['rgba(27, 38, 44, 0.35)'],
+					borderWidth: 2,
+					pointBorderWidth: 0,
+					pointRadius: 2,
+					pointBackgroundColor: 'rgb(27, 38, 44)',
+					fill: false
+				}
+			]
 		};
 
 		dispatch({
 			type: GET_GLOBAL_HISTORY,
-			payload: chart
+			payload: { infected, recovered, deaths }
 		});
 	} catch (err) {
 		// console.error(err.response.data.message);
@@ -88,7 +88,7 @@ export const getCountryHistory = country => async dispatch => {
 
 	try {
 		const res = await axios.get(
-			`https://disease.sh/v3/covid-19/historical/${country}?lastdays=60`
+			`https://disease.sh/v3/covid-19/historical/${country}?lastdays=90`
 		);
 
 		const labels = Object.keys(res.data.timeline.cases);
@@ -170,21 +170,28 @@ const getCountryHistoryBar = country => async dispatch => {
 		);
 
 		const barChart = {
-			labels: ['Infected', 'Recovered', 'Deaths'],
+			labels: ['Infected', 'Recovered', 'Deaths', 'Active'],
 			datasets: [
 				{
 					backgroundColor: [
 						'rgba(199, 0, 57, 0.05)',
 						'rgba(40, 223, 153, 0.05)',
-						'rgba(27, 38, 44, 0.05)'
+						'rgba(27, 38, 44, 0.05)',
+						'rgba(223, 165, 39, 0.05)'
 					],
 					borderColor: [
 						'rgb(199, 0, 57)',
 						'rgb(40, 223, 153)',
-						'rgb(27, 38, 44)'
+						'rgb(27, 38, 44)',
+						'rgb(223, 165, 39)'
 					],
 					borderWidth: 2,
-					data: [res.data.cases, res.data.recovered, res.data.deaths]
+					data: [
+						res.data.cases,
+						res.data.recovered,
+						res.data.deaths,
+						res.data.active
+					]
 				}
 			]
 		};
